@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teens Who Tutor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sky:       #87CEEB;
+      --sky-dark:  #2A7FA8;
+      --sky-light: #E8F6FD;
+      --sky-mid:   #B8E2F5;
+      --text-dark: #1A3A4A;
+      --text-muted:#5A8A9F;
+      --white:     #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+    }
+
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 64px;
+      background: var(--white);
+      border-bottom: 1.5px solid var(--sky-mid);
+      display: flex;
+      align-items: center;
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 1080px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--sky-dark);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--sky-dark);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-dark); }
+    .btn-nav {
+      background: var(--sky-dark);
+      color: var(--white) !important;
+      padding: 0.5rem 1.1rem;
+      border-radius: 10px;
+      font-weight: 700 !important;
+      transition: background 0.2s !important;
+    }
+    .btn-nav:hover { background: var(--text-dark) !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--sky-dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border-bottom: 1.5px solid var(--sky-mid);
+      padding: 1rem 2rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none;
+      color: var(--sky-dark);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .mobile-menu .btn-nav {
+      text-align: center;
+      padding: 0.6rem 1rem;
+      border-radius: 10px;
+      background: var(--sky-dark);
+      color: var(--white) !important;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      background: linear-gradient(135deg, #cce9f7 0%, #87CEEB 60%, #2A7FA8 100%);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+    }
+    .hero-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.35);
+      color: var(--text-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      border: 1.5px solid rgba(255,255,255,0.6);
+    }
+    #hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      text-shadow: 0 2px 12px rgba(42,127,168,0.3);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-dark);
+      font-weight: 400;
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .btn-primary {
+      background: var(--sky-dark);
+      color: var(--white);
+      padding: 0.75rem 1.75rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s;
+      font-family: 'Nunito', sans-serif;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--text-dark); }
+    .btn-secondary {
+      background: var(--white);
+      color: var(--sky-dark);
+      padding: 0.75rem 1.75rem;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      border: 2px solid var(--sky-dark);
+      transition: background 0.2s, color 0.2s;
+      font-family: 'Nunito', sans-serif;
+      cursor: pointer;
+    }
+    .btn-secondary:hover { background: var(--sky-light); }
+    .hero-img-placeholder {
+      width: 100%;
+      max-width: 700px;
+      height: 260px;
+      margin: 0 auto;
+      background: var(--sky-light);
+      border: 2px dashed var(--sky-mid);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* ── ANNOUNCEMENT BANNER ── */
+    #announcement {
+      background: var(--sky-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 0.9rem 2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 4rem 2rem; }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sky-dark);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+    }
+    .section-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--sky);
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .about-img {
+      background: var(--sky-light);
+      border: 2px dashed var(--sky-mid);
+      border-radius: 14px;
+      height: 340px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+    .about-text p {
+      line-height: 1.8;
+      color: var(--text-dark);
+      font-size: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+    .pill {
+      background: var(--sky-light);
+      color: var(--sky-dark);
+      border: 1.5px solid var(--sky-mid);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    /* ── TEAM ── */
+    #team { background: var(--sky-light); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.75rem;
+      margin-top: 2rem;
+    }
+    .tutor-card {
+      background: var(--white);
+      border: 1.5px solid var(--sky-mid);
+      border-radius: 14px;
+      padding: 1.75rem 1.5rem;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .tutor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(42,127,168,0.12);
+    }
+    .tutor-photo {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--sky-light);
+      border: 2px dashed var(--sky-mid);
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-align: center;
+      overflow: hidden;
+    }
+    .tutor-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .tutor-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+    }
+    .tutor-school {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+    }
+    .subject-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .tag {
+      background: var(--sky-light);
+      color: var(--sky-dark);
+      border: 1px solid var(--sky-mid);
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .tutor-bio {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--white); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .subject-card {
+      background: var(--sky-light);
+      border: 1.5px solid var(--sky-mid);
+      border-radius: 14px;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      cursor: default;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .subject-card:hover {
+      background: var(--sky-mid);
+      transform: translateY(-3px);
+    }
+    .subject-icon { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+    .subject-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--sky-dark);
+    }
+
+    /* ── SCHEDULING ── */
+    #schedule { background: var(--sky-light); }
+    .schedule-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .availability-block h3 {
+      font-size: 1.35rem;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+    .avail-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.93rem;
+      margin-bottom: 1.5rem;
+    }
+    .avail-table th {
+      background: var(--sky-dark);
+      color: var(--white);
+      padding: 0.65rem 1rem;
+      text-align: left;
+      font-weight: 700;
+    }
+    .avail-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid var(--sky-mid);
+      color: var(--text-dark);
+    }
+    .avail-table tr:last-child td { border-bottom: none; }
+    .avail-table tr:nth-child(even) td { background: rgba(184,226,245,0.2); }
+    .schedule-photo {
+      background: var(--sky-light);
+      border: 2px dashed var(--sky-mid);
+      border-radius: 14px;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+    }
+
+    /* FORM */
+    .booking-form-block h3 {
+      font-size: 1.35rem;
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.95rem;
+      padding: 0.65rem 0.9rem;
+      border: 1.5px solid var(--sky-mid);
+      border-radius: 10px;
+      color: var(--text-dark);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--sky-dark);
+      box-shadow: 0 0 0 3px rgba(42,127,168,0.15);
+    }
+    .form-group input.error,
+    .form-group select.error {
+      border-color: #e05252;
+    }
+    .field-error {
+      font-size: 0.78rem;
+      color: #e05252;
+      font-weight: 600;
+    }
+    .form-group textarea { min-height: 90px; resize: vertical; }
+    .form-submit-btn {
+      width: 100%;
+      padding: 0.85rem;
+      font-size: 1rem;
+      font-weight: 800;
+      border-radius: 12px;
+      border: none;
+      background: var(--sky-dark);
+      color: var(--white);
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: background 0.2s;
+    }
+    .form-submit-btn:hover { background: var(--text-dark); }
+    .form-privacy {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      line-height: 1.6;
+    }
+    .form-privacy a { color: var(--sky-dark); }
+    #form-success {
+      display: none;
+      background: #d4edda;
+      color: #155724;
+      border: 1.5px solid #c3e6cb;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+    #form-success.visible { display: block; }
+
+    /* ── MISSION ── */
+    #mission {
+      background: var(--sky-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .mission-inner {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    #mission .section-label { color: var(--sky-mid); }
+    #mission .section-title { color: var(--white); }
+    #mission .section-divider { background: var(--sky-mid); margin: 0 auto 2rem; }
+    .mission-text {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.88);
+      font-weight: 400;
+    }
+
+    /* ── PRIVACY ── */
+    #privacy { background: var(--white); }
+    .privacy-list {
+      list-style: none;
+      counter-reset: privacy;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      margin-top: 1.5rem;
+    }
+    .privacy-list li {
+      counter-increment: privacy;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      background: var(--sky-light);
+      border: 1.5px solid var(--sky-mid);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+    }
+    .privacy-list li::before {
+      content: counter(privacy);
+      min-width: 28px;
+      height: 28px;
+      background: var(--sky-dark);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .privacy-list li strong { color: var(--sky-dark); font-weight: 700; }
+    .consent-notice {
+      margin-top: 1.5rem;
+      background: var(--sky-light);
+      border-left: 4px solid var(--sky-dark);
+      padding: 0.9rem 1.1rem;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.88rem;
+      color: var(--text-dark);
+      font-style: italic;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--text-dark);
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.88rem;
+    }
+    .footer-org {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .footer-tag { margin-bottom: 0.5rem; }
+    footer a { color: var(--sky); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-copy { margin-top: 0.75rem; font-size: 0.78rem; opacity: 0.6; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .about-grid { grid-template-columns: 1fr; }
+      .schedule-inner { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .team-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">Teens Who Tutor</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#schedule" class="btn-nav">Book Free Session</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#team" class="mobile-link">Team</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#schedule" class="mobile-link">Schedule</a>
+    <a href="#schedule" class="btn-nav mobile-link">Book Free Session</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="badge">Non-Profit Tutoring Organization &middot; New York City</div>
+    <h1>Learning Made Personal,<br>By Teens Who Care</h1>
+    <p class="hero-sub">Free, 30-minute online tutoring sessions for students in grades K–8, delivered by passionate 15–16 year old tutors from Trinity School in New York City.</p>
+    <div class="hero-btns">
+      <a href="#schedule" class="btn-primary">Book a Free Session</a>
+      <a href="#about" class="btn-secondary">Learn More</a>
+    </div>
+    <div class="hero-img-placeholder">Add photo here &mdash; Team Photo (min 1200&times;600px)</div>
+  </div>
+</section>
+
+<!-- ANNOUNCEMENT BANNER -->
+<div id="announcement">
+  🎉 Now offering FREE 30-minute sessions for students in grades K–8!
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img">Add photo here &mdash; Photo of our team</div>
+      <div class="about-text">
+        <div class="section-label">Who We Are</div>
+        <h2 class="section-title">About Us</h2>
+        <div class="section-divider"></div>
+        <p>Teens Who Tutor is a student-run non-profit tutoring initiative dedicated to helping underprivileged kids in New York City and across the nation gain access to quality academic support — completely free of charge.</p>
+        <p>Our tutors are 15–16 year old high school students at Trinity School in New York City. We believe that peer-to-peer learning creates a unique bond — students relate to us because we're close in age and still remember what it's like to learn these subjects for the first time.</p>
+        <p>All sessions are conducted online via Zoom, making it easy for families anywhere in the country to participate. Each session is 30 minutes and tailored to the student's specific needs.</p>
+        <div class="pill-row">
+          <span class="pill">🗽 NYC-based</span>
+          <span class="pill">🌐 Available nationwide online</span>
+          <span class="pill">📹 Classes via Zoom</span>
+          <span class="pill">🎒 Grades K–8</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-inner">
+    <div class="section-label">Meet the Tutors</div>
+    <h2 class="section-title">Our Team</h2>
+    <div class="section-divider"></div>
+    <div class="team-grid">
+
+      <div class="tutor-card">
+        <div class="tutor-photo">Add Photo</div>
+        <div class="tutor-name">Yibo</div>
+        <div class="tutor-school">Sophomore, Trinity School</div>
+        <div class="subject-tags">
+          <span class="tag">Mandarin</span>
+          <span class="tag">Math</span>
+          <span class="tag">English</span>
+          <span class="tag">History</span>
+        </div>
+        <p class="tutor-bio">A fluent Mandarin speaker who makes frequent trips to China, Yibo brings a rich cultural perspective to language learning and a sharp analytical mind to math and history.</p>
+      </div>
+
+      <div class="tutor-card">
+        <div class="tutor-photo">Add Photo</div>
+        <div class="tutor-name">Nicholas</div>
+        <div class="tutor-school">Sophomore, Trinity School</div>
+        <div class="subject-tags">
+          <span class="tag">French</span>
+          <span class="tag">Math</span>
+          <span class="tag">English</span>
+          <span class="tag">History</span>
+        </div>
+        <p class="tutor-bio">With 6 years of French under his belt and a true passion for languages and communication, Nicholas loves helping students find their voice in reading, writing, and beyond.</p>
+      </div>
+
+      <div class="tutor-card">
+        <div class="tutor-photo">Add Photo</div>
+        <div class="tutor-name">Sebastian</div>
+        <div class="tutor-school">Sophomore, Trinity School</div>
+        <div class="subject-tags">
+          <span class="tag">Latin</span>
+          <span class="tag">French</span>
+          <span class="tag">English</span>
+          <span class="tag">History</span>
+        </div>
+        <p class="tutor-bio">Three years of Latin and fluent French make Sebastian a humanities powerhouse. He has a special talent for making ancient languages and classic literature feel alive and approachable.</p>
+      </div>
+
+      <div class="tutor-card">
+        <div class="tutor-photo">Add Photo</div>
+        <div class="tutor-name">Leonard</div>
+        <div class="tutor-school">Sophomore, Trinity School</div>
+        <div class="subject-tags">
+          <span class="tag">English</span>
+          <span class="tag">History</span>
+          <span class="tag">Spanish</span>
+          <span class="tag">Russian</span>
+        </div>
+        <p class="tutor-bio">A Russian speaker with a strong humanities focus, Leonard excels at helping students build confidence in writing, critical thinking, and exploring history from multiple perspectives.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">What We Teach</div>
+    <h2 class="section-title">Our Services</h2>
+    <div class="section-divider"></div>
+    <div class="services-grid">
+      <div class="subject-card"><span class="subject-icon">➕</span><div class="subject-name">Math</div></div>
+      <div class="subject-card"><span class="subject-icon">📖</span><div class="subject-name">English</div></div>
+      <div class="subject-card"><span class="subject-icon">🏛️</span><div class="subject-name">History</div></div>
+      <div class="subject-card"><span class="subject-icon">🐉</span><div class="subject-name">Mandarin</div></div>
+      <div class="subject-card"><span class="subject-icon">🗼</span><div class="subject-name">French</div></div>
+      <div class="subject-card"><span class="subject-icon">💃</span><div class="subject-name">Spanish</div></div>
+      <div class="subject-card"><span class="subject-icon">🏛</span><div class="subject-name">Latin</div></div>
+      <div class="subject-card"><span class="subject-icon">🪆</span><div class="subject-name">Russian</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULING & BOOKING -->
+<section id="schedule">
+  <div class="section-inner">
+    <div class="section-label">Book a Session</div>
+    <h2 class="section-title">Scheduling &amp; Booking</h2>
+    <div class="section-divider"></div>
+    <div class="schedule-inner">
+
+      <div class="availability-block">
+        <h3>Tutor Availability</h3>
+        <table class="avail-table">
+          <thead>
+            <tr><th>Day(s)</th><th>Availability</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Monday, Tuesday, Thursday</td><td>~3:30 PM – 7:30 PM</td></tr>
+            <tr><td>Wednesday, Friday</td><td>~2:30 PM – 7:30 PM</td></tr>
+            <tr><td>Saturday &amp; Sunday</td><td>10:00 AM – 5:00 PM</td></tr>
+          </tbody>
+        </table>
+        <div class="schedule-photo">Add photo here &mdash; Action Photo</div>
+      </div>
+
+      <div class="booking-form-block">
+        <h3>Request Your Free Session</h3>
+        <form id="booking-form" action="https://formspree.io/f/teentutors28@gmail.com" method="POST" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">Student First Name <span style="color:#e05252">*</span></label>
+              <input type="text" id="first-name" name="student_first_name" placeholder="First name" required />
+              <span class="field-error" id="err-first-name"></span>
+            </div>
+            <div class="form-group">
+              <label for="last-name">Student Last Name <span style="color:#e05252">*</span></label>
+              <input type="text" id="last-name" name="student_last_name" placeholder="Last name" required />
+              <span class="field-error" id="err-last-name"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="parent-email">Parent / Guardian Email <span style="color:#e05252">*</span></label>
+            <input type="email" id="parent-email" name="parent_email" placeholder="you@example.com" required />
+            <span class="field-error" id="err-parent-email"></span>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="grade">Grade Level <span style="color:#e05252">*</span></label>
+              <select id="grade" name="grade_level" required>
+                <option value="">Select grade…</option>
+                <option>Kindergarten</option>
+                <option>1st Grade</option>
+                <option>2nd Grade</option>
+                <option>3rd Grade</option>
+                <option>4th Grade</option>
+                <option>5th Grade</option>
+                <option>6th Grade</option>
+                <option>7th Grade</option>
+                <option>8th Grade</option>
+              </select>
+              <span class="field-error" id="err-grade"></span>
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject Needed <span style="color:#e05252">*</span></label>
+              <select id="subject" name="subject" required>
+                <option value="">Select subject…</option>
+                <option>Math</option>
+                <option>English</option>
+                <option>History</option>
+                <option>Mandarin</option>
+                <option>French</option>
+                <option>Spanish</option>
+                <option>Latin</option>
+                <option>Russian</option>
+              </select>
+              <span class="field-error" id="err-subject"></span>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pref-date">Preferred Date</label>
+              <input type="date" id="pref-date" name="preferred_date" />
+            </div>
+            <div class="form-group">
+              <label for="pref-time">Preferred Time</label>
+              <input type="time" id="pref-time" name="preferred_time" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="notes">Additional Notes / Context</label>
+            <textarea id="notes" name="notes" placeholder="Any details about what the student needs help with…"></textarea>
+          </div>
+          <button type="submit" class="form-submit-btn">Request My Free Session</button>
+          <p class="form-privacy">By submitting this form, you consent to the collection and use of your information as described in our <a href="#privacy">Privacy Policy</a>. We only use your information for scheduling purposes and will never share it with third parties.</p>
+          <div id="form-success">
+            ✅ Thanks! Your session request was sent. We'll follow up at the email you provided within 24–48 hours.
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="mission-inner">
+    <div class="section-label">Why We Do This</div>
+    <h2 class="section-title">Our Mission</h2>
+    <div class="section-divider"></div>
+    <p class="mission-text">
+      At Teens Who Tutor, we believe that every child deserves access to quality academic support regardless of their background or zip code. As a fully non-profit initiative, we charge nothing for our sessions — because learning shouldn't come with a price tag.
+      <br /><br />
+      We are a team of 15–16 year old students who know firsthand what it's like to struggle with a subject, discover a passion for it, and ultimately master it. That shared experience is the heart of peer learning — and it's what makes our sessions different.
+      <br /><br />
+      Our goal is simple: to give every student in grades K–8, whether in New York City or across the country, the personalized attention and encouragement they need to thrive. One session at a time, we're working toward a more equitable future in education.
+    </p>
+  </div>
+</section>
+
+<!-- PRIVACY POLICY -->
+<section id="privacy">
+  <div class="section-inner">
+    <div class="section-label">Your Data &amp; Rights</div>
+    <h2 class="section-title">Privacy Policy</h2>
+    <div class="section-divider"></div>
+    <ol class="privacy-list">
+      <li><div><strong>Information Collected:</strong> We collect only what is necessary to schedule your session — including the student's name, a parent or guardian's email address, and session time preferences.</div></li>
+      <li><div><strong>Purpose:</strong> Your information is used solely for booking, scheduling, and communicating about your tutoring session. We do not use it for marketing or any other purpose.</div></li>
+      <li><div><strong>Third-Party Access:</strong> We will never share, sell, or disclose your information to any third party under any circumstances.</div></li>
+      <li><div><strong>Data Retention:</strong> We retain your information only for as long as is necessary to complete your scheduling coordination. It is deleted promptly thereafter.</div></li>
+      <li><div><strong>Your Rights:</strong> You have the right to access, correct, or request deletion of your data at any time by emailing us at <a href="mailto:teentutors28@gmail.com">teentutors28@gmail.com</a>.</div></li>
+    </ol>
+    <div class="consent-notice">
+      "By submitting our booking form, you consent to the collection and use of your information as described above."
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-org">Teens Who Tutor</div>
+  <div class="footer-tag">Free online tutoring for grades K–8, by teens who care.</div>
+  <div><a href="mailto:teentutors28@gmail.com">teentutors28@gmail.com</a></div>
+  <div class="footer-copy">&copy; 2025 Teens Who Tutor. All rights reserved. Non-profit tutoring initiative &mdash; Trinity School, New York City.</div>
+</footer>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // Booking form — client-side validation + Formspree AJAX
+  const form = document.getElementById('booking-form');
+  const successMsg = document.getElementById('form-success');
+
+  const required = ['first-name', 'last-name', 'parent-email', 'grade', 'subject'];
+  const errorMsgs = {
+    'first-name':    'Please enter the student\'s first name.',
+    'last-name':     'Please enter the student\'s last name.',
+    'parent-email':  'Please enter a valid email address.',
+    'grade':         'Please select a grade level.',
+    'subject':       'Please select a subject.',
+  };
+
+  function validateEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+  }
+
+  function clearErrors() {
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      const err = document.getElementById('err-' + id);
+      el.classList.remove('error');
+      err.textContent = '';
+    });
+  }
+
+  function validate() {
+    let ok = true;
+    required.forEach(id => {
+      const el = document.getElementById(id);
+      const err = document.getElementById('err-' + id);
+      const val = el.value.trim();
+      let msg = '';
+      if (!val) {
+        msg = errorMsgs[id];
+      } else if (id === 'parent-email' && !validateEmail(val)) {
+        msg = 'Please enter a valid email address.';
+      }
+      if (msg) {
+        el.classList.add('error');
+        err.textContent = msg;
+        ok = false;
+      }
+    });
+    return ok;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    clearErrors();
+    if (!validate()) return;
+
+    const btn = form.querySelector('.form-submit-btn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        successMsg.classList.add('visible');
+        successMsg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        btn.textContent = 'Request My Free Session';
+        btn.disabled = false;
+        alert('Something went wrong. Please try emailing us at teentutors28@gmail.com.');
+      }
+    } catch {
+      btn.textContent = 'Request My Free Session';
+      btn.disabled = false;
+      alert('Could not send. Please email us directly at teentutors28@gmail.com.');
+    }
+  });
+</script>
+
+</body>
+</html>
